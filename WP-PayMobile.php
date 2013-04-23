@@ -219,14 +219,14 @@ class WP_PayMobile {
 	     add_submenu_page( 'WP_PayMobile', 'WP PayMobile Install Guide', 'Install Guide', 'add_users', 'WP_PayMobile_Install', array($this, 'install_page'));
 	}
 
+	public function install_page() {
+		file_get_contents('documentation.html');
+	}
+
 	public function options_page() {
 	//delete btn
 	if(isset($_GET['do']) AND ($_GET['do'] == 'removeBtn')) {
 		delete_option('wp_paytoread_btnurl');
-	}
-
-	public function install_page() {
-		file_get_contents('documentation.html');
 	}
 	
 	//update options	
