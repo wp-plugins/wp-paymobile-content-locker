@@ -216,11 +216,14 @@ class WP_PayMobile {
 	public function admin_page() {
 	     add_menu_page('WP PayMobile', 'WP PayMobile', 'add_users', 'WP_PayMobile',  array($this, 'options_page'), plugins_url('wp-paymobile-content-locker/assets/lock.png'));
 	     add_submenu_page( 'WP_PayMobile', 'WP PayMobile Stats', 'Statistics', 'add_users', 'WP_PayMobile_Stats', array($this, 'statistics_page'));
-	     add_submenu_page( 'WP_PayMobile', 'WP PayMobile Install Guide', 'Install Guide', 'add_users', 'WP_PayMobile_Install', array($this, 'install_page'));
+	     add_submenu_page( 'WP_PayMobile', 'WP PayMobile Install Guide', 'Install Guide', 'add_users', 'WP_PayMobile_Install', array($this, 'installation_page'));
 	}
 
-	public function install_page() {
-		echo file_get_contents(plugins_url( 'documentation.html', __FILE__));
+	public function installation_page() {
+		#echo file_get_contents(plugins_url( 'documentation.html', __FILE__));
+		//var_dump(plugins_url( 'documentation.html', __FILE__));
+		echo "YYYYY";
+		
 	}
 
 	public function options_page() {
