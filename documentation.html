@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>WP PayMobile Plugin</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;WP PayMobile&rdquo; Documentation by &ldquo;crivion&rdquo; v1.0</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;WP PayMobile Plugin&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: Apr 2013<br>
+					By: Alex Crivion<br>
+					Web: <a href="http://crivion.com">crivion.com</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				&nbsp;
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li><a href="#install">Installing the plugin</a></li>
+			<li><a href="#import">Setting Plugin Options</a></li>
+			<li><a href="#rule">Creating Shortcode</a></li>
+			<li><a href="#log">Configuring PayGol Gateway</a></li>
+			
+		</ol>
+		
+		<hr>
+		
+		<h3 id="install"><strong>A) Installing the plugin</strong> - <a href="#toc">top</a></h3>
+		
+		<p>Installing the plugin is very easy just like any other wordpress plugin. <br/> 
+			Connect to your hosting and upload the extracted zip file folder of the plugin into wp-content/plugins/<br/>
+			Then go to wp-admin->plugins->and activate WP PayMobile</p> 
+
+		<hr>
+
+		<h3 id="import"><strong>B) Setting Plugin Options</strong> - <a href="#toc">top</a></h3>
+
+		<p>The first thing you might want to do is to setup  WP PayMobile Options : <br/>
+			Into wordpress admin, go to the newly installed plugin section called "WP Paymobile".
+			<ul>
+				<li>You can choose if you want to use a custom button/image or the default red, blue or yellow one (default is yellow).</li>
+				<li>You can setup your own message to encourage users to Pay with their Mobile to see all the page/post content.</li>
+			</ul>
+			 </p> 
+		<hr>
+		
+		<h3 id="rule"><strong>C) Adding Shortcode</strong> - <a href="#toc">top</a></h3>
+		<p>
+			Adding the shortcode is a simple straight forward job. You can use it on as many pages/posts as you want.
+			<br/>
+			The shortcode contains a start tag <span style="font-weight:bold;color:#cc0000;">[wp_paymobile_popup]</span> and an 
+			end tag <span style="font-weight:bold;color:#cc0000;">[/wp_paymobile_popup]</span>.<br/>
+
+			The content between the shortcode will not be shown unless they pay by mobile. <br/>
+			<em>Example:</em> [wp_paymobile_popup] this content will be shown to paying visitors [/wp_paymobile_popup]
+		</p>
+		
+		<hr>
+		
+		<h3 id="log"><strong>D) Configuring PayGol Payment Gateway</strong> - <a href="#toc">top</a></h3>
+		<p>
+			You are required to register for FREE with <a style="color:#cc0000;font-weight:bold;" href="http://paygol.com/register?affiliatecode=4DB2-70CA-T5KZ-U5ZU" target="_blank">PayGol Payment Gateway</a><br/>
+					This is crucial for the plugin to work and you to get paid.<br/><br/>
+
+			Once you have signed up with paygol, go ahead and <a href="http://www.paygol.com/newservice" target="_blank">create a new service</a> by choosing "Any Type Of Website".<br/><br/>
+
+			When asked for "Type" choose "Integrated" and for the "Url Background (IPN)	" (!Important) enter <em>your-site-domain.com/paymobile-ipn</em>.
+			Now you go to My Services-> and copy &amp; paste your ID into WP PayMobile Options. This should be a number and not a string.
+			<br/><br/>
+
+			That's it, enjoy your sales with this new monetization opportunity.
+		</p>
+		 
+		
+		<p class="append-bottom alt large"><strong>Alex Crivion</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>
