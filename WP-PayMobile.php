@@ -4,7 +4,7 @@ Plugin Name: WP PayMobile Content Locker
 Plugin URI: http://paymobile.crivion.com
 Description: WP PayMobile enables you to "lock" portions or complete posts/pages contents and ask for an SMS/Phone Call mobile micropayment to unlock.
 Author: Crivion
-Version: 1.0
+Version: 1.1
 Author URI: http://crivion.com
 License: GPLv2 or later
 */
@@ -214,14 +214,19 @@ class WP_PayMobile {
 
     //wp-admin options
 	public function admin_page() {
-	     add_menu_page('WP PayMobile', 'WP PayMobile', 'add_users', 'WP_PayMobile',  array($this, 'options_page'), plugins_url('WP-PayMobile/assets/lock.png'));
+	     add_menu_page('WP PayMobile', 'WP PayMobile', 'add_users', 'WP_PayMobile',  array($this, 'options_page'), plugins_url('wp-paymobile-content-locker/assets/lock.png'));
 	     add_submenu_page( 'WP_PayMobile', 'WP PayMobile Stats', 'Statistics', 'add_users', 'WP_PayMobile_Stats', array($this, 'statistics_page'));
+	     add_submenu_page( 'WP_PayMobile', 'WP PayMobile Install Guide', 'Install Guide', 'add_users', 'WP_PayMobile_Install', array($this, 'install_page'));
 	}
 
 	public function options_page() {
 	//delete btn
 	if(isset($_GET['do']) AND ($_GET['do'] == 'removeBtn')) {
 		delete_option('wp_paytoread_btnurl');
+	}
+
+	public function install_page() {
+		file_get_contents('documentation.html');
 	}
 	
 	//update options	
@@ -328,7 +333,7 @@ class WP_PayMobile {
 
 		?>
 		<div class="wrap">
-		<img src="<?php echo plugins_url('WP-PayMobile/assets/lock-icon.png'); ?>" class="alignleft" style="margin-top:5px;margin-right:5px;"/>
+		<img src="<?php echo plugins_url('wp-paymobile-content-locker/assets/lock-icon.png'); ?>" class="alignleft" style="margin-top:5px;margin-right:5px;"/>
 		<h2>WP PayMobile Statistics</h2>
 		
 		<div style="clear:both;width:500px;border-top:1px solid #EFEFEF;margin-top:10px;margin-bottom:10px;"></div>
