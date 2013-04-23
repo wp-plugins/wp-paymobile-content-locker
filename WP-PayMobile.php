@@ -214,7 +214,7 @@ class WP_PayMobile {
 
     //wp-admin options
 	public function admin_page() {
-	     add_menu_page('WP PayMobile', 'WP PayMobile', 'add_users', 'WP_PayMobile',  array($this, 'options_page'), plugins_url('wp-paymobile-content-locker/assets/lock.png'));
+	     add_menu_page('WP PayMobile', 'WP PayMobile', 'add_users', 'WP_PayMobile',  array($this, 'options_page'), plugins_url('wp-paymobile-content-locker/lock.png'));
 	     add_submenu_page( 'WP_PayMobile', 'WP PayMobile Stats', 'Statistics', 'add_users', 'WP_PayMobile_Stats', array($this, 'statistics_page'));
 	     add_submenu_page( 'WP_PayMobile', 'WP PayMobile Install Guide', 'Install Guide', 'add_users', 'WP_PayMobile_Install', array($this, 'installation_page'));
 	}
@@ -268,7 +268,7 @@ class WP_PayMobile {
 	$wp_paytoread_currency = get_option( 'wp_paytoread_currency', 'USD');
 	?>
 	<div class="wrap">
-		<img src="<?php echo plugins_url('WP-PayMobile/assets/lock-icon.png'); ?>" class="alignleft" style="margin-top:5px;margin-right:5px;"/>
+		<img src="<?php echo plugins_url('lock-icon.png', __FILE__); ?>" class="alignleft" style="margin-top:5px;margin-right:5px;"/>
 		<h2>WP PayMobile Options</h2>
 		
 		<div style="clear:both;width:500px;border-top:1px solid #EFEFEF;margin-top:10px;margin-bottom:10px;"></div>
