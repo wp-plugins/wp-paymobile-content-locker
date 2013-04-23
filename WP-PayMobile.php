@@ -220,7 +220,7 @@ class WP_PayMobile {
 	}
 
 	public function install_page() {
-		file_get_contents(plugins_url( 'documentation.html', __FILE__));
+		echo file_get_contents(plugins_url( 'documentation.html', __FILE__));
 	}
 
 	public function options_page() {
