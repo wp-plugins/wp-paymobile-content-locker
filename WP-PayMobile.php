@@ -4,7 +4,7 @@ Plugin Name: WP PayMobile Content Locker
 Plugin URI: http://paymobile.crivion.com
 Description: WP PayMobile enables you to "lock" portions or complete posts/pages contents and ask for an SMS/Phone Call mobile micropayment to unlock.
 Author: Crivion
-Version: 1.2
+Version: 1.3
 Author URI: http://crivion.com
 License: GPLv2 or later
 */
