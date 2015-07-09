@@ -4,7 +4,7 @@ Plugin Name: WP PayMobile Content Locker
 Plugin URI: http://paymobile.crivion.com
 Description: WP PayMobile enables you to "lock" portions or complete posts/pages contents and ask for an SMS/Phone Call mobile micropayment to unlock.
 Author: Crivion
-Version: 1.1
+Version: 1.2
 Author URI: http://crivion.com
 License: GPLv2 or later
 */
@@ -12,7 +12,7 @@ class WP_PayMobile {
 
 	public static $IP;
 	public $PayMobile_Options = array('wp_paytoread_btnstyle' => 'standard-yellow', 
-							 		  'wp_paytoread_linktext' => 'Pay by SMS/Call',
+							 		  //'wp_paytoread_linktext' => 'Pay by SMS/Call',
 							 		  'wp_paytoread_msg'      => 'Pay by Mobile to get access to the rest of the content', 
 							 		  'wp_paytoread_service'  =>  0000, 
 							 		  'wp_paytoread_currency' => 'USD');
@@ -27,7 +27,7 @@ class WP_PayMobile {
 		add_shortcode('wp_paymobile_ipn', array($this, 'shortcode_ipn'));
 
 		//ip address
-		$this->IP = $this->getRealIpAddr();
+		self::$IP = $this->getRealIpAddr();
 
 		//add wp-admin page
 		add_action('admin_menu', array($this, 'admin_page'));
@@ -94,7 +94,7 @@ class WP_PayMobile {
 		global $post;
 
 		//ipn URL
-		$ipn_URL = get_bloginfo('url') . '/paymobile-ipn';
+		$ipn_URL = get_bloginfo('url') . '/paymobile-ipn/';
 		$serviceID = get_option('wp_paytoread_service', 0000);
 		$currency = get_option( 'wp_paytoread_currency', 'USD');
 	
@@ -108,20 +108,20 @@ class WP_PayMobile {
 		$btn = get_option( 'wp_paytoread_btnstyle', 'standard-yellow' );
 		
 		if($btn == 'standard-yellow') {
-			$paymobile_submit = '<input type="image" name="pg_button" class="paygol" src="http://www.paygol.com/micropayment/img/buttons/150/yellow_en_pbm.png" border="0" alt="Make payments with PayGol: the easiest way!" title="Make payments with PayGol: the easiest way!" onClick="pg_reDirect(this.form)">';
+			$paymobile_submit = '<input type="image" name="pg_button" class="paygol" src="http://www.paygol.com/micropayment/img/buttons/150/yellow_en_pbm.png" border="0" alt="Make payments with PayGol: the easiest way!" title="Make payments with PayGol: the easiest way!">';
 		}elseif($btn == 'standard-red') {
-			$paymobile_submit = '<input type="image" name="pg_button" class="paygol" src="http://www.paygol.com/micropayment/img/buttons/150/red_en_pbm.png" border="0" alt="Make payments with PayGol: the easiest way!" title="Make payments with PayGol: the easiest way!" onClick="pg_reDirect(this.form)">';
+			$paymobile_submit = '<input type="image" name="pg_button" class="paygol" src="http://www.paygol.com/micropayment/img/buttons/150/red_en_pbm.png" border="0" alt="Make payments with PayGol: the easiest way!" title="Make payments with PayGol: the easiest way!">';
 		}elseif ($btn == 'standard-blue') {
-			$paymobile_submit = '<input type="image" name="pg_button" class="paygol" src="http://www.paygol.com/micropayment/img/buttons/150/blue_en_pbm.png" border="0" alt="Make payments with PayGol: the easiest way!" title="Make payments with PayGol: the easiest way!" onClick="pg_reDirect(this.form)">';
+			$paymobile_submit = '<input type="image" name="pg_button" class="paygol" src="http://www.paygol.com/micropayment/img/buttons/150/blue_en_pbm.png" border="0" alt="Make payments with PayGol: the easiest way!" title="Make payments with PayGol: the easiest way!">';
 		}elseif(get_option("wp_paytoread_btnstyle") == 'image-btn') {
-			$paymobile_submit = '<input type="image" name="pg_button" class="paygol" src="' . get_option('wp_paytoread_btnurl') . '" border="0" alt="Make payments with PayGol: the easiest way!" title="Make payments with PayGol: the easiest way!" onClick="pg_reDirect(this.form)">';
+			$paymobile_submit = '<input type="image" name="pg_button" class="paygol" src="' . get_option('wp_paytoread_btnurl') . '" border="0" alt="Make payments with PayGol: the easiest way!" title="Make payments with PayGol: the easiest way!">';
 		}
 
 		$return .= '<!-- PayGol JavaScript -->
-					<script src="http://www.paygol.com/micropayment/js/paygol.js" type="text/javascript"></script> 
+					
 
 					<!-- PayGol Form -->
-					<form name="pg_frm">
+					<form name="pg_frm" method="post" action="https://www.paygol.com/pay" >
 					 <input type="hidden" name="pg_serviceid" value="' . trim($serviceID) . '">
 					 <input type="hidden" name="pg_currency" value="' . trim($currency) . '">
 					 <input type="hidden" name="pg_name" value="WP PayMobile To Read">
@@ -141,12 +141,6 @@ class WP_PayMobile {
 
 		global $wpdb;
 		global $post;
-		
-		// check that the request comes from PayGol server
-		if(!in_array($_SERVER['REMOTE_ADDR'],
-		  array('109.70.3.48', '109.70.3.146', '109.70.3.58'))) {
-		  return false;
-		}
 		
 		// get the variables from PayGol system
 		$message_id	= trim(strip_tags($_GET['message_id']));
